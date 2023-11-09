@@ -1,17 +1,16 @@
 const knex = require("../database/knex");
 const { hash } = require("bcrypt");
-const AppError = require("../utils/AppError");
 
 class UserRepository{
     async create(user){
         
         user.password = await hash(user.password, 8);
 
-        const newUser = await knex("users").insert(user);
-        return (newUser);
+        const [user_id] = await knex("users").insert(user);
+        return ({id: user_id,...user});
     }
 
-    async update(user_id){
+    async update(user){
         return await (`usuário ${user_id} atualizado com sucesso`);
     }
 

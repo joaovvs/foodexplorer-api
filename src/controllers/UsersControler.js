@@ -7,9 +7,9 @@ class UserController{
      
 
     async create(request,response){
-        const { name, email, password, role}= request.body;
+        const { name, email, password}= request.body;
 
-        const user = { name, email, password, role};
+        const user = { name, email, password};
 
         const userRepository = new UserRepository();
         const userCreateService = new UserCreateService(userRepository);  
