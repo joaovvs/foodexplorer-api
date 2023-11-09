@@ -1,4 +1,4 @@
-class UserRepository{
+class UserRepositoryInMemory{
     users = [];
     async create({name, email, password, role}){
         const newUser = {
@@ -29,4 +29,4 @@ class UserRepository{
 
 }
 
-module.exports = UserRepository;
+module.exports = UserRepositoryInMemory;

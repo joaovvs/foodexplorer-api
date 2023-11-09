@@ -9,7 +9,6 @@ class UserCreateService {
     async execute(user){
 
         const checkUserExist = await this.userRepository.findByEmail(user.email);
-        console.log(`usuario existe?: ${checkUserExist}`);
         if(checkUserExist){
             throw new AppError("Já existe cadastro para o e-mail informado!");
         }
