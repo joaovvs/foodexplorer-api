@@ -1,5 +1,5 @@
 const { hash } = require("bcrypt");
-const AppError = require("../util/AppError");
+const AppError = require("../utils/AppError");
 
 class UserCreateService {
     constructor (userRepository){
@@ -8,7 +8,8 @@ class UserCreateService {
 
     async execute(user){
 
-        const checkUserExist = await this.userRepository.findByEmail(user.email);
+        const [checkUserExist] = await this.userRepository.findByEmail(user.email);
+        console.log(checkUserExist);
         if(checkUserExist){
             throw new AppError("Já existe cadastro para o e-mail informado!");
         }

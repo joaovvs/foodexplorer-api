@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
-    "test": "jest"
+    "test": "jest",
+    "migrate": "knex migrate:latest"
   },
   "keywords": [
     "food",
@@ -22,6 +23,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "knex": "^3.0.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.6"
   },

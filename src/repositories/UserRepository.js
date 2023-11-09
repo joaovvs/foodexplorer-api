@@ -1,15 +1,13 @@
+const knex = require("../database/knex");
+const { hash } = require("bcrypt");
+const AppError = require("../utils/AppError");
+
 class UserRepository{
-    users = [];
-    async create({name, email, password, role}){
-        const newUser = {
-            id: Math.floor(Math.random()*1000+1),
-            name,
-            email,
-            role,
-            password
-        };
-        await this.users.push(newUser);
-        console.log(this.users);
+    async create(user){
+        
+        user.password = await hash(user.password, 8);
+
+        const newUser = await knex("users").insert(user);
         return (newUser);
     }
 
@@ -18,8 +16,7 @@ class UserRepository{
     }
 
     async findByEmail(email){
-        console.log(this.users.find(user => user.email === email));
-        return await this.users.find(user => user.email === email);
+         return await knex("users").where({email});
 
     }
 
