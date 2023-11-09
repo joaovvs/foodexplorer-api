@@ -6,8 +6,19 @@ class UserCreateService {
     constructor (userRepository){
         this.userRepository = userRepository;
     }
+
+    /* function to valid email with regex*/
+    validEmail(email){
+        return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
+    }
+
     /* execute service Create User*/
     async execute(user){
+
+        const emailIsValid = this.validEmail(user.email);
+        if(!emailIsValid){
+            throw new AppError("Informe um e-mail válido");
+        }
         
         const checkUserExist = await this.userRepository.findUserByEmail(user.email);
         /*valid if exists another user with same email*/

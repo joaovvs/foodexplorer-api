@@ -19,19 +19,39 @@ describe("userUpdateService", ()=> {
             name: "João",
             email: "joao@email.com",
             password: "123",
-            role: "admin"
+
         }
 
         const userToUpdate = {
             name: "João Vinícius",
             email: "joao@email.com",
-            password: "123",
-            role: "admin"
+            password: "1234",
+            old_password: "123"
         }
 
         const userCreated = await userCreateService.execute(user);
         const userUpdated = await userUpdateService.execute(userToUpdate,userCreated.id)
         expect(userUpdated.name).toEqual("João Vinícius");
+    });
+
+    it("email mustbe valid", async ()=> {
+        const user = {
+            name: "João",
+            email: "joao@email.com",
+            password: "123",
+
+        }
+
+        const userToUpdate = {
+            name: "João Vinícius",
+            email: "joaoemail.com",
+            password: "1234",
+            old_password: "123"
+        }
+
+        const userCreated = await userCreateService.execute(user);
+        await expect(userUpdateService.execute(userToUpdate,userCreated.id)).rejects.toEqual(new AppError("Informe um e-mail válido"));
+
     });
 
     it("user shouldn't be updated if no exists user", async ()=> {

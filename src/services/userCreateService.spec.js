@@ -22,7 +22,18 @@ describe("userCreateService", ()=> {
         expect(userCreated).toHaveProperty("id");
     });
 
-    it("user shouldn't be created with existent e=mail", async () => {
+    it("user shuldn't be created with invalid e-mail", async () => {
+        const user = {
+            name: "João",
+            email: "joaoemailcom",
+            password: "123",
+            role: "admin"
+        }
+        await expect(userCreateService.execute(user)).rejects.toEqual(new AppError("Informe um e-mail válido"));
+
+    });
+
+    it("user shouldn't be created with existent e-mail", async () => {
         const user1 = {
             name: "João",
             email: "joao@email.com",
