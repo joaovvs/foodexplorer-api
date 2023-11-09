@@ -26,14 +26,13 @@ class UserUpdateService {
         /* verify if request contains a password and old_password */
         if(user_data.password && user_data.old_password){
             /*compate user password and old_passowrd*/ 
-            console.log("old = "+ user_data.old_password);
-            console.log("atual = "+ user.password);
             const checkOldPassword = await compare(user_data.old_password, user.password);
-            console.log(checkOldPassword);
+
             /* if don't match throw a error message*/
             if(!checkOldPassword){
                 throw new AppError("A senha antiga não confere!");
             }
+            
             /* hash and assign new password to user*/
             user.password = await hash(user_data.password, 8)    
         }
