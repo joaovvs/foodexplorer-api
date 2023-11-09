@@ -2,9 +2,9 @@
 const AppError = require("../utils/AppError");
 const { hash } = require("bcryptjs");
 
-class UserCreateService {
-    constructor (userRepository){
-        this.userRepository = userRepository;
+class UsersCreateService {
+    constructor (usersRepository){
+        this.usersRepository = usersRepository;
     }
 
     /* function to valid email with regex*/
@@ -20,7 +20,7 @@ class UserCreateService {
             throw new AppError("Informe um e-mail válido");
         }
         
-        const checkUserExist = await this.userRepository.findUserByEmail(user.email);
+        const checkUserExist = await this.usersRepository.findUserByEmail(user.email);
         /*valid if exists another user with same email*/
         if(checkUserExist){
             throw new AppError("Já existe cadastro para o e-mail informado!");
@@ -33,7 +33,7 @@ class UserCreateService {
         user.password = hashedPassword;
 
         /*receive user created*/ 
-        const userCreated = await this.userRepository.create(user);
+        const userCreated = await this.usersRepository.create(user);
 
         return userCreated;
     }
@@ -41,4 +41,4 @@ class UserCreateService {
 }
 
 
-module.exports = UserCreateService;
+module.exports = UsersCreateService;

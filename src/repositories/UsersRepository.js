@@ -1,7 +1,7 @@
 const knex = require("../database/knex");
 
 
-class UserRepository{
+class UsersRepository{
     async create(user){
 
         const [user_id] = await knex("users").insert(user);
@@ -32,4 +32,4 @@ class UserRepository{
 
 }
 
-module.exports = UserRepository;
+module.exports = UsersRepository;

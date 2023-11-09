@@ -1,19 +1,16 @@
-const UserCreateService = require("../services/UserCreateService");
-const UserUpdateService = require("../services/UserUpdateService");
-const UserRepository = require("../repositories/UserRepository");
+const UsersCreateService = require("../services/UsersCreateService");
+const UsersUpdateService = require("../services/UsersUpdateService");
+const UsersRepository = require("../repositories/UsersRepository");
 
-class UserController{
+class UsersController{
     
-    
-     
-
     async create(request,response){
         const user= request.body;
 
-        const userRepository = new UserRepository();
-        const userCreateService = new UserCreateService(userRepository);  
+        const usersRepository = new UsersRepository();
+        const usersCreateService = new UsersCreateService(usersRepository);  
         
-        const newUser = await userCreateService.execute(user);
+        const newUser = await usersCreateService.execute(user);
         return response.json(newUser);  
     }
 
@@ -21,13 +18,13 @@ class UserController{
         const user_data = request.body;
         const user_id= request.params.id;
 
-        const userRepository = new UserRepository();
-        const userUpdateService = new UserUpdateService(userRepository);  
+        const usersRepository = new UsersRepository();
+        const usersUpdateService = new UsersUpdateService(userRepository);  
 
-        const updatedUser = await userUpdateService.execute(user_data,user_id);
+        const updatedUser = await usersUpdateService.execute(user_data,user_id);
 
         return response.status(201).json(updatedUser);
     }
 }
 
-module.exports = UserController;
+module.exports = UsersController;

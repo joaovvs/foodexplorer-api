@@ -1,4 +1,4 @@
-class UserRepositoryInMemory{
+class UsersRepositoryInMemory{
     users = [];
     async create({name, email, password}){
         const newUser = {
@@ -13,7 +13,7 @@ class UserRepositoryInMemory{
 
     async update(user_data,user_id){
         this.users.filter(user => user.id === user_id);
-        this.users.push(user_data);
+        this.users.push({id: user_id}, ...user_data);
  
         return this.users.find(user => user.id ===user_id);
     }
@@ -29,4 +29,4 @@ class UserRepositoryInMemory{
 
 }
 
-module.exports = UserRepositoryInMemory;
+module.exports = UsersRepositoryInMemory;
