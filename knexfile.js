@@ -7,10 +7,9 @@ module.exports = {
     connection: {
       filename: path.resolve(__dirname,"src","database", "foodExplorer.db")
     },
+    useNullAsDefault: true,
     migrations: {
       directory: path.resolve(__dirname, "src", "database","knex","migrations")
-    },
-    useNullAsDefault: true
-
+    }
   }
 };

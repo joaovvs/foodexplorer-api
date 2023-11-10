@@ -6,10 +6,13 @@ class FoodsController{
 
     async create(request,response){
         const food = request.body
-        const foodsRepository = FoodsRepository();
+        const foodsRepository = new FoodsRepository();
         const foodsCreateService = new FoodsCreateService(foodsRepository);
 
         const newFood = await  foodsCreateService.execute(food);
+
+
+
         return response.json(newFood);
     }
 
