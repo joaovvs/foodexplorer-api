@@ -5,8 +5,8 @@ class FoodsRepository{
     async create(food){
         const id = Math.floor(Math.random()*1000+1);
         const newFood = {id, ...food}
-        this.foods.push(newFood);
-
+        await this.foods.push(newFood);
+        console.log(this.foods);
         return newFood;
     }
 
@@ -14,7 +14,7 @@ class FoodsRepository{
     async update(foodUpdated, food_id){
         this.foods.filter(food => food.id === food_id);
         this.foods.push({id:food_id}, ...foodUpdated);
-
+  
         return this.foods.find(food => food.id =food_id);
     }
 
@@ -33,6 +33,7 @@ class FoodsRepository{
         this.foods.filter(food => food.id === food_id);
         return; 
     }
+
 }
 
 

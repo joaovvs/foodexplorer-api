@@ -1,16 +1,16 @@
-const UserRepositoryInMemory = require("../repositories/UserRepositoryInMemory");
+const UsersRepositoryInMemory = require("../repositories/UsersRepositoryInMemory");
 const AppError = require("../utils/AppError");
-const UserCreateService = require("./UserCreateService");
-const UserUpdateService = require("./UserUpdateService");
+const UsersCreateService = require("./UsersCreateService");
+const UsersUpdateService = require("./UsersUpdateService");
 
 describe("userUpdateService", ()=> {
-    let userRepository = null;
-    let userCreateService= null;
+    let usersRepository = null;
+    let usersCreateService= null;
 
     beforeEach(()=> {
-        userRepository = new UserRepositoryInMemory();
-        userCreateService = new UserCreateService(userRepository);
-        userUpdateService = new UserUpdateService(userRepository);
+        usersRepository = new UsersRepositoryInMemory();
+        usersCreateService = new UsersCreateService(usersRepository);
+        usersUpdateService = new UsersUpdateService(usersRepository);
         
     })
 
@@ -29,9 +29,9 @@ describe("userUpdateService", ()=> {
             old_password: "123"
         }
 
-        const userCreated = await userCreateService.execute(user);
-        const userUpdated = await userUpdateService.execute(userToUpdate,userCreated.id)
-        expect(userUpdated.name).toEqual("João Vinícius");
+        const usersCreated = await usersCreateService.execute(user);
+        const usersUpdated = await usersUpdateService.execute(userToUpdate,usersCreated.id)
+        expect(usersUpdated.name).toEqual("João Vinícius");
     });
 
     it("email mustbe valid", async ()=> {
@@ -49,8 +49,8 @@ describe("userUpdateService", ()=> {
             old_password: "123"
         }
 
-        const userCreated = await userCreateService.execute(user);
-        await expect(userUpdateService.execute(userToUpdate,userCreated.id)).rejects.toEqual(new AppError("Informe um e-mail válido"));
+        const usersCreated = await usersCreateService.execute(user);
+        await expect(usersUpdateService.execute(userToUpdate,usersCreated.id)).rejects.toEqual(new AppError("Informe um e-mail válido"));
 
     });
 
@@ -62,7 +62,7 @@ describe("userUpdateService", ()=> {
             email: "joao@email.com",
             password: "123"
         };
-        await expect(userUpdateService.execute(userToUpdate,user_id)).rejects.toEqual(new AppError("Usuário não encontrado!"));
+        await expect(usersUpdateService.execute(userToUpdate,user_id)).rejects.toEqual(new AppError("Usuário não encontrado!"));
 
     });
 
@@ -81,9 +81,9 @@ describe("userUpdateService", ()=> {
             old_password: "1234"
         }
 
-        const userCreated = await userCreateService.execute(user);
+        const userCreated = await usersCreateService.execute(user);
 
-        await expect(userUpdateService.execute(userToUpdate,userCreated.id)).rejects.toEqual(new AppError("A senha antiga não confere!"));
+        await expect(usersUpdateService.execute(userToUpdate,userCreated.id)).rejects.toEqual(new AppError("A senha antiga não confere!"));
 
     });
 
@@ -108,11 +108,11 @@ describe("userUpdateService", ()=> {
             old_password: "123"
         }
         /*create user*/
-        const userCreated = await userCreateService.execute(user);
+        const userCreated = await usersCreateService.execute(user);
         /*create user2*/
-        await userCreateService.execute(user2);
+        await usersCreateService.execute(user2);
 
-        await expect(userUpdateService.execute(userToUpdate,userCreated.id)).rejects.toEqual(new AppError("Este e-mail já está em uso por outro usuário"));
+        await expect(usersUpdateService.execute(userToUpdate,userCreated.id)).rejects.toEqual(new AppError("Este e-mail já está em uso por outro usuário"));
 
     });
 

@@ -13,7 +13,7 @@ class FoodsController{
 
 
 
-        return response.json(newFood);
+        return response.json({...newFood});
     }
 
 

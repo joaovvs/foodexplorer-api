@@ -1,14 +1,14 @@
-const UserRepositoryInMemory = require("../repositories/UserRepositoryInMemory");
+const UsersRepositoryInMemory = require("../repositories/UsersRepositoryInMemory");
 const AppError = require("../utils/AppError");
-const UserCreateService = require("./UserCreateService");
+const UsersCreateService = require("./UsersCreateService");
 
 describe("userCreateService", ()=> {
-    let userRepository = null;
-    let userCreateService= null;
+    let usersRepository = null;
+    let usersCreateService= null;
 
     beforeEach(()=> {
-        userRepository = new UserRepositoryInMemory();
-        userCreateService = new UserCreateService(userRepository);
+        usersRepository = new UsersRepositoryInMemory();
+        usersCreateService = new UsersCreateService(usersRepository);
     })
 
     it("user should be created", async ()=> {
@@ -18,8 +18,8 @@ describe("userCreateService", ()=> {
             password: "123",
             role: "admin"
         }
-        const userCreated = await userCreateService.execute(user);
-        expect(userCreated).toHaveProperty("id");
+        const usersCreated = await usersCreateService.execute(user);
+        expect(usersCreated).toHaveProperty("id");
     });
 
     it("user shuldn't be created with invalid e-mail", async () => {
@@ -29,7 +29,7 @@ describe("userCreateService", ()=> {
             password: "123",
             role: "admin"
         }
-        await expect(userCreateService.execute(user)).rejects.toEqual(new AppError("Informe um e-mail válido"));
+        await expect(usersCreateService.execute(user)).rejects.toEqual(new AppError("Informe um e-mail válido"));
 
     });
 
@@ -46,8 +46,8 @@ describe("userCreateService", ()=> {
             password: "123",
             role: "admin"
         }
-        await userCreateService.execute(user1);
-        await expect(userCreateService.execute(user2)).rejects.toEqual(new AppError("Já existe cadastro para o e-mail informado!"));
+        await usersCreateService.execute(user1);
+        await expect(usersCreateService.execute(user2)).rejects.toEqual(new AppError("Já existe cadastro para o e-mail informado!"));
 
     });
 }
