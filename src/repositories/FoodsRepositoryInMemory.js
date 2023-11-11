@@ -6,7 +6,6 @@ class FoodsRepository{
         const id = Math.floor(Math.random()*1000+1);
         const newFood = {id, ...food}
         await this.foods.push(newFood);
-        console.log(this.foods);
         return newFood;
     }
 

@@ -29,9 +29,9 @@ describe("userUpdateService", ()=> {
             old_password: "123"
         }
 
-        const usersCreated = await usersCreateService.execute(user);
-        const usersUpdated = await usersUpdateService.execute(userToUpdate,usersCreated.id)
-        expect(usersUpdated.name).toEqual("João Vinícius");
+        const userCreated = await usersCreateService.execute(user);
+        const userUpdated = await usersUpdateService.execute(userToUpdate,userCreated.id)
+        expect(userUpdated.name).toEqual("João Vinícius");
     });
 
     it("email mustbe valid", async ()=> {

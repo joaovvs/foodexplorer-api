@@ -18,7 +18,6 @@ class FoodsRepository{
             await knex("ingredients").insert(ingredientsInsert);
         }
         const ingredientsCreated = await knex.select().from("ingredients").where({food_id}).orderBy("name");
-        console.log(ingredientsCreated);
         const foodWithIngredients = {...foodCreated,ingredients: ingredientsCreated.map(ingredient => ingredient.name)}; 
         return {...foodWithIngredients}
     }

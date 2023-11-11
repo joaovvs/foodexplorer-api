@@ -12,7 +12,6 @@ class FoodsCreateService {
         }
 
         const newFood = await this.foodsRepository.create({name,category,description,price,ingredients, user_id});
-        console.log(newFood);
         return {...newFood};
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699667015389" clover="3.2.0">
-  <project timestamp="1699667015389" name="All files">
-    <metrics statements="223" coveredstatements="200" conditionals="38" coveredconditionals="35" methods="21" coveredmethods="17" elements="282" coveredelements="252" complexity="0" loc="223" ncloc="223" packages="3" files="6" classes="6"/>
+<coverage generated="1699668980395" clover="3.2.0">
+  <project timestamp="1699668980395" name="All files">
+    <metrics statements="224" coveredstatements="209" conditionals="38" coveredconditionals="36" methods="21" coveredmethods="17" elements="283" coveredelements="262" complexity="0" loc="224" ncloc="224" packages="3" files="6" classes="6"/>
     <package name="repositories">
-      <metrics statements="72" coveredstatements="57" conditionals="10" coveredconditionals="10" methods="11" coveredmethods="7"/>
+      <metrics statements="74" coveredstatements="59" conditionals="11" coveredconditionals="11" methods="11" coveredmethods="7"/>
       <file name="FoodsRepositoryInMemory.js" path="D:\FrontEndDev\rocketseat explorer\projeto final\api\src\repositories\FoodsRepositoryInMemory.js">
-        <metrics statements="40" coveredstatements="25" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="2"/>
+        <metrics statements="39" coveredstatements="24" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="2" type="cond" truecount="1" falsecount="0"/>
@@ -16,39 +16,38 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
         <line num="31" count="2" type="stmt"/>
-        <line num="32" count="2" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
       </file>
       <file name="UsersRepositoryInMemory.js" path="D:\FrontEndDev\rocketseat explorer\projeto final\api\src\repositories\UsersRepositoryInMemory.js">
-        <metrics statements="32" coveredstatements="32" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
+        <metrics statements="35" coveredstatements="35" conditionals="9" coveredconditionals="9" methods="5" coveredmethods="5"/>
         <line num="1" count="8" type="cond" truecount="1" falsecount="0"/>
         <line num="2" count="8" type="stmt"/>
         <line num="3" count="8" type="cond" truecount="1" falsecount="0"/>
@@ -68,25 +67,28 @@
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="20" count="8" type="stmt"/>
-        <line num="21" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="22" count="11" type="cond" truecount="1" falsecount="0"/>
-        <line num="23" count="11" type="stmt"/>
-        <line num="24" count="11" type="stmt"/>
-        <line num="25" count="8" type="stmt"/>
-        <line num="26" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="27" count="5" type="cond" truecount="1" falsecount="0"/>
-        <line num="28" count="5" type="stmt"/>
-        <line num="29" count="8" type="stmt"/>
-        <line num="30" count="8" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="24" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="11" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="28" count="8" type="stmt"/>
+        <line num="29" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="32" count="8" type="stmt"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
       </file>
     </package>
     <package name="services">
-      <metrics statements="140" coveredstatements="132" conditionals="26" coveredconditionals="23" methods="8" coveredmethods="8"/>
+      <metrics statements="139" coveredstatements="139" conditionals="25" coveredconditionals="23" methods="8" coveredmethods="8"/>
       <file name="FoodsCreateService.js" path="D:\FrontEndDev\rocketseat explorer\projeto final\api\src\services\FoodsCreateService.js">
-        <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <metrics statements="19" coveredstatements="19" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -106,7 +108,6 @@
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
       </file>
       <file name="UsersCreateService.js" path="D:\FrontEndDev\rocketseat explorer\projeto final\api\src\services\UsersCreateService.js">
         <metrics statements="44" coveredstatements="44" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
@@ -156,7 +157,7 @@
         <line num="44" count="1" type="stmt"/>
       </file>
       <file name="UsersUpdateService.js" path="D:\FrontEndDev\rocketseat explorer\projeto final\api\src\services\UsersUpdateService.js">
-        <metrics statements="76" coveredstatements="68" conditionals="16" coveredconditionals="13" methods="3" coveredmethods="3"/>
+        <metrics statements="76" coveredstatements="76" conditionals="15" coveredconditionals="13" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -219,15 +220,15 @@
         <line num="60" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
-        <line num="63" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
         <line num="72" count="1" type="stmt"/>
         <line num="73" count="1" type="stmt"/>
         <line num="74" count="1" type="stmt"/>

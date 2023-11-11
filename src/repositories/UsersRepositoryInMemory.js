@@ -12,8 +12,11 @@ class UsersRepositoryInMemory{
     }
 
     async update(user_data,user_id){
-        this.users.filter(user => user.id === user_id);
-        this.users.push({id: user_id}, ...user_data);
+        this.users.map(user => {
+            if(user.id === user_id)
+                return {id: user.id, ...user_data}
+        });
+        console.log(this.user);
  
         return this.users.find(user => user.id ===user_id);
     }
