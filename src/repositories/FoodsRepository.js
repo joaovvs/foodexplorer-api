@@ -22,6 +22,10 @@ class FoodsRepository{
 
 
     async update(food){
+        const  {id, name, category, description, price, user_id, ingredients} = food;
+        await knex("foods").update({name, category, description, price, "updated_at": knex.fn.now()}).where({id});
+
+        return await this.findFoodById(id);
 
     }
 
@@ -83,6 +87,10 @@ class FoodsRepository{
 
 
         return foodsWithTags;
+    }
+
+    async ingredientsByFoodId(food_id){
+        return knex("ingredients").where({food_id});
     }
 
 }

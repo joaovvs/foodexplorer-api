@@ -3,6 +3,7 @@ const FoodsCreateService = require("../services/FoodsCreateService");
 const FoodsDeleteService = require("../services/FoodsDeleteService");
 const FoodsIndexService = require("../services/FoodsIndexService");
 const FoodsShowService = require("../services/FoodsShowService");
+const FoodsUpdateService = require("../services/FoodsUpdateService");
 
 const AppError = require("../utils/AppError");
 
@@ -25,7 +26,15 @@ class FoodsController{
 
 
     async update(request, response){
-        return response.json("update");
+        const {id, name, category, description, price, user_id, ingredients}= request.body;
+
+
+        const foodsRepository = new FoodsRepository();
+        const foodsUpdateService = new FoodsUpdateService(foodsRepository);
+
+        const updatedFood = await foodsUpdateService.execute({id, name, category, description, price, user_id, ingredients});
+
+        return await response.json(updatedFood);
     }
 
     async show(request, response){
