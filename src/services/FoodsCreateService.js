@@ -6,7 +6,7 @@ class FoodsCreateService {
         this.foodsRepository = foodsRepository;
     }
 
-    async execute({name,category,description,price, user_id, ingredients}){
+    async execute({name,category,description,price, ingredients},user_id){
         if(!name ||  !category || !description || !price ){
             throw new AppError("Preencha todos os campos para realizar o cadastro!");
         }

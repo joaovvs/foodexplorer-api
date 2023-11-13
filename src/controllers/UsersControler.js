@@ -16,10 +16,10 @@ class UsersController{
 
     async update(request, response){
         const user_data = request.body;
-        const user_id= request.params.id;
+        const user_id= request.user.id;
 
         const usersRepository = new UsersRepository();
-        const usersUpdateService = new UsersUpdateService(userRepository);  
+        const usersUpdateService = new UsersUpdateService(usersRepository);  
 
         const updatedUser = await usersUpdateService.execute(user_data,user_id);
 

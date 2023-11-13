@@ -12,12 +12,13 @@ class FoodsController{
 
     async create(request,response){
         const food = request.body
+        const user_id = request.user.id;
         
         const foodsRepository = new FoodsRepository();
         const foodsCreateService = new FoodsCreateService(foodsRepository);
  
 
-        const newFood = await  foodsCreateService.execute(food);
+        const newFood = await  foodsCreateService.execute(food,user_id);
 
 
 

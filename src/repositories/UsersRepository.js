@@ -27,6 +27,7 @@ class UsersRepository{
 
     async findUserById(user_id){
         const user = await knex("users").where({id: user_id}).first();
+        console.log(user);
         return user;
     }
 

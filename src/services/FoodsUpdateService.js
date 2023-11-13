@@ -8,7 +8,6 @@ class FoodsUpdateService {
     async execute({id, name, category, description, price, ingredients}){
 
         const food = await this.foodsRepository.findFoodById(id);
-        console.log(food);
         if(!food){
             throw new AppError("Comida não cadastrada!");
         }
