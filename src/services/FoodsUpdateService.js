@@ -5,7 +5,7 @@ class FoodsUpdateService {
         this.foodsRepository = foodsRepository;
     }
 
-    async execute({id, name, category, description, price, ingredients}){
+    async execute({id, name, category, description,image, price, ingredients}){
 
         const food = await this.foodsRepository.findFoodById(id);
         if(!food){
@@ -18,6 +18,7 @@ class FoodsUpdateService {
         food.description= description ?? food.description;
         food.price = price ?? food.price;
         food.ingredients = ingredients ?? food.ingredients;
+        food.image = image ?? food.image;
     
 
         return await this.foodsRepository.update(food);

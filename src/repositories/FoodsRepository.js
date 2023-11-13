@@ -22,8 +22,8 @@ class FoodsRepository{
 
 
     async update(food){
-        const  {id, name, category, description, price, user_id, ingredients} = food;
-        await knex("foods").update({name, category, description, price, "updated_at": knex.fn.now()}).where({id});
+        const  {id, name, category, description, image, price, user_id, ingredients} = food;
+        await knex("foods").update({name, category, description, image, price, "updated_at": knex.fn.now()}).where({id});
 
         return await this.findFoodById(id);
 
