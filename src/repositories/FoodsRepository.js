@@ -37,8 +37,14 @@ class FoodsRepository{
 
     async findFoodById(food_id){
         const foodSearched = await knex("foods").where({id: food_id}).first();
-        const foodIngredients = await knex.select().from("ingredients").where({food_id}).orderBy("name");
-        return {...foodSearched,ingredients: foodIngredients.map(ingredient => ingredient.name)}
+        if(foodSearched){
+            const foodIngredients = await knex.select().from("ingredients").where({food_id}).orderBy("name");
+            if (foodIngredients){
+                return await {...foodSearched,ingredients: foodIngredients.map(ingredient => ingredient.name)}
+            }else{
+                return await {...foodSearched};
+            }
+            }
     }
 
     async findFoodsByIngredients(ingredients){
