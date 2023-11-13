@@ -17,9 +17,7 @@ class FoodsRepository{
 
             await knex("ingredients").insert(ingredientsInsert);
         }
-        const ingredientsCreated = await knex.select().from("ingredients").where({food_id}).orderBy("name");
-        const foodWithIngredients = {...foodCreated,ingredients: ingredientsCreated.map(ingredient => ingredient.name)}; 
-        return {...foodWithIngredients}
+        return this.findFoodById(food_id);
     }
 
 
@@ -27,14 +25,60 @@ class FoodsRepository{
 
     }
 
-    async findFoodById(food_id){
+    
+    async delete(food_id){
+            /*remove ingredients*/
+            await knex("ingredients").where({food_id}).delete(); 
+            /*delete food*/
+            return await knex("foods").where({id: food_id}).delete();
 
+    }
+
+
+    async findFoodById(food_id){
+        const foodSearched = await knex("foods").where({id: food_id}).first();
+        const foodIngredients = await knex.select().from("ingredients").where({food_id}).orderBy("name");
+        return {...foodSearched,ingredients: foodIngredients.map(ingredient => ingredient.name)}
     }
 
     async findFoodsByIngredients(ingredients){
+        let foods;
+        /* if user send any ingredient search by ingredients else return all*/
+        if(ingredients){
+            const filterIngredients = ingredients.split(",").map(ingredient => ingredient.trim());
+            foods = await knex("foods")
+            .select([
+                "foods.id",
+                "foods.name",
+                "foods.category",
+                "foods.description",
+                "foods.price",
+                "foods.user_id"
+            ]).distinct()
+            .whereIn("ingredients.name", filterIngredients)
+            .innerJoin("ingredients", "foods.id","ingredients.food_id")
+            .orderBy("foods.name");
 
+        }else{
+           foods = await knex("foods").select().orderBy("name");
+        }
+
+        const ingredientsData = await knex("ingredients").orderBy("name");
+
+        const foodsWithTags = foods.map(food => {
+            const foodIngredients = ingredientsData.filter( ingredient => ingredient.food_id === food.id);
+            const ingredientsList = foodIngredients.map(foodIngredient => foodIngredient.name);
+            return {
+                ...food,
+                ingredients: ingredientsList
+            }
+        });
+
+
+
+        return foodsWithTags;
     }
-}
 
+}
 
 module.exports = FoodsRepository;
