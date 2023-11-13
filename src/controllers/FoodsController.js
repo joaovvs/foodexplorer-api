@@ -49,14 +49,14 @@ class FoodsController{
     }
 
     async index(request, response){
-        const {ingredients}=request.query
+        const {ingredients, name}=request.query
 
         const foodsRepository = new FoodsRepository();
         const foodsIndexService = new FoodsIndexService(foodsRepository);
 
 
 
-        return response.json( await foodsIndexService.execute(ingredients));
+        return response.json( await foodsIndexService.execute(ingredients,name));
     }
 
     async delete(request, response){

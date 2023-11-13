@@ -51,7 +51,7 @@ class FoodsRepository{
             }
     }
 
-    async findFoodsByIngredients(ingredients){
+    async findFoodsByIngredients(ingredients,name){
         let foods;
         /* if user send any ingredient search by ingredients else return all*/
         if(ingredients){
@@ -65,12 +65,16 @@ class FoodsRepository{
                 "foods.price",
                 "foods.user_id"
             ]).distinct()
+            .whereLike("foods.name", `%${name}%`)
             .whereIn("ingredients.name", filterIngredients)
             .innerJoin("ingredients", "foods.id","ingredients.food_id")
             .orderBy("foods.name");
 
         }else{
-           foods = await knex("foods").select().orderBy("name");
+           foods = await knex("foods")
+           .select()
+           .whereLike("foods.name", `%${name}%`)
+           .orderBy("name");
         }
 
         const ingredientsData = await knex("ingredients").orderBy("name");

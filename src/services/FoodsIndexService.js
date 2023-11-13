@@ -5,9 +5,9 @@ class FoodsIndexService {
         this.foodsRepository = foodsRepository;
     }
 
-    async execute(ingredients){
+    async execute(ingredients,name){
 
-        return this.foodsRepository.findFoodsByIngredients(ingredients);
+        return this.foodsRepository.findFoodsByIngredients(ingredients,name);
     }    
 }
 
