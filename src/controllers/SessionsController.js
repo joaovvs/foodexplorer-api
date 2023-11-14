@@ -8,6 +8,8 @@ const { sign } = require("jsonwebtoken");
 class SessionsController {
     async create(request, response){
         const {email, password} = request.body;
+
+        console.log(email, password);
         const usersRepository = new UsersRepository();
         const sessionsCreateService = new SessionsCreateService(usersRepository);
 
@@ -28,7 +30,7 @@ class SessionsController {
 
         delete user.password;
         
-        return response.status(201).json({user});
+        return await response.status(201).json({user});
  
     }
 }
