@@ -9,7 +9,6 @@ class SessionsController {
     async create(request, response){
         const {email, password} = request.body;
 
-        console.log(email, password);
         const usersRepository = new UsersRepository();
         const sessionsCreateService = new SessionsCreateService(usersRepository);
 
