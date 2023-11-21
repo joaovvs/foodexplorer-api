@@ -25,6 +25,11 @@ class UsersCreateService {
         if(checkUserExist){
             throw new AppError("Já existe cadastro para o e-mail informado!");
         }
+
+        /*valid if password have 6 digits*/
+        if(user.password.length<6){
+            throw new AppError("A senha precisa ter no mínimo 6 digitos");
+        }
         
         /* create hashed password*/
         const hashedPassword = await hash(user.password, 8);
