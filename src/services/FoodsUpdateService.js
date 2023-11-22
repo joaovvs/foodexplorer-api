@@ -5,7 +5,7 @@ class FoodsUpdateService {
         this.foodsRepository = foodsRepository;
     }
 
-    async execute({id, name, category, description,image, price, ingredients}){
+    async execute({id, name, category, description,image, price, ingredients,user_id}){
 
         const food = await this.foodsRepository.findFoodById(id);
         if(!food){
@@ -17,11 +17,34 @@ class FoodsUpdateService {
         food.category = category ?? food.category;
         food.description= description ?? food.description;
         food.price = price ?? food.price;
-        food.ingredients = ingredients ?? food.ingredients;
-        food.image = image ?? food.image;
-    
 
-        return await this.foodsRepository.update(food);
+        food.image = image ?? food.image;
+
+        const newIngredients = [];
+        const removedIngredients = [];
+    
+        // ingredients update
+        //check there's a ingredient list
+            //fill newIngredients if not exist ingredient
+            ingredients.forEach(receivedIngredient => {
+                if(!food.ingredients.some(ingredient => ingredient === receivedIngredient)){
+                    newIngredients.push(receivedIngredient); 
+                }
+            })
+
+        //check if ingredient was removed and include on removedIngredients    
+            food.ingredients.forEach(foodIngredient => {
+                if(!ingredients.some(ingredient => ingredient === foodIngredient)){
+                    removedIngredients.push(foodIngredient);
+                }
+            })
+            if(newIngredients || removedIngredients){
+                console.log("lista são diferentes!");
+            }
+
+
+
+        return await this.foodsRepository.update(food,newIngredients,removedIngredients);
     }    
 }
 

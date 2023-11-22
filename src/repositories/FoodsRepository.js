@@ -21,9 +21,35 @@ class FoodsRepository{
     }
 
 
-    async update(food){
-        const  {id, name, category, description, image, price, user_id, ingredients} = food;
+    async update(food,newIngredients, removedIngredients){
+        const  {id, name, category, description, image, price, user_id} = food;
         await knex("foods").update({name, category, description, image, price, "updated_at": knex.fn.now()}).where({id});
+        console.log(newIngredients)
+        if(newIngredients?.length>0){
+            newIngredients = newIngredients.map(ingredient => {
+                return {
+                    food_id: id,
+                    user_id,
+                    name: ingredient
+                }
+            })
+            await knex("ingredients").insert(newIngredients);
+        }
+        console.log(removedIngredients);
+        if(removedIngredients?.length>0){
+            removedIngredients = removedIngredients.map(ingredient => {
+                return {
+                    food_id: id,
+                    user_id,
+                    name: ingredient
+                }
+            })
+               await knex("ingredients")
+               .whereIn(["food_id","name"],removedIngredients.map(removed =>[removed.food_id,removed.name]))
+               .delete();
+            }
+            
+        
 
         return await this.findFoodById(id);
 
