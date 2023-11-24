@@ -94,13 +94,13 @@ class FoodsRepository{
             .whereLike("foods.name", `%${name}%`)
             .whereIn("ingredients.name", filterIngredients)
             .innerJoin("ingredients", "foods.id","ingredients.food_id")
-            .orderBy("foods.name");
+            .orderBy("foods.category","food.name");
 
         }else{
            foods = await knex("foods")
            .select()
            .whereLike("foods.name", `%${name}%`)
-           .orderBy("name");
+           .orderBy("foods.category","food.name");
         }
 
         const ingredientsData = await knex("ingredients").orderBy("name");
