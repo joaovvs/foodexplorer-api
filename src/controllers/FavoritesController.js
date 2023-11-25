@@ -14,8 +14,6 @@ class FavoritesController{
         const user_id = request.user.id;
         const {food_id} = request.params;
 
-        console.log(user_id) ;
-        console.log(food_id);
 
         const favoritesRepository = new FavoritesRepository();
         const favoriteCreateService = new FavoriteCreateService(favoritesRepository);
@@ -49,7 +47,7 @@ class FavoritesController{
         if(result>0){
             return response.json("Registro demovido com sucesso");
         }else{
-            return response.status(result.statusCode).json(result.message);
+            return response.status(result.statusCode).json({"status": result.statusCode,"message":result.message});
         }
         
 

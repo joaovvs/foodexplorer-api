@@ -7,7 +7,7 @@ class FoodsIndexService {
 
     async execute(ingredients,name){
 
-        return this.foodsRepository.findFoodsByIngredients(ingredients,name);
+        return this.foodsRepository.findFoodsByIngredientsOrName(ingredients,name);
     }    
 }
 

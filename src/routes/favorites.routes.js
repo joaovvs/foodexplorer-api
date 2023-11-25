@@ -12,9 +12,9 @@ const favoritesController = new FavoritesController();
 favoritesRoutes.use(ensureAuthenticated);
 
 
-favoritesRoutes.post("/:food_id",verifyUserAuthorization(["admin","costumer"]), favoritesController.create);
-favoritesRoutes.get("/",verifyUserAuthorization(["admin","costumer"]), favoritesController.index);
-favoritesRoutes.delete("/:food_id",verifyUserAuthorization(["admin","costumer"]), favoritesController.delete);
+favoritesRoutes.post("/:food_id",verifyUserAuthorization(["admin","customer"]), favoritesController.create);
+favoritesRoutes.get("/",verifyUserAuthorization(["admin","customer"]), favoritesController.index);
+favoritesRoutes.delete("/:food_id",verifyUserAuthorization(["admin","customer"]), favoritesController.delete);
 
 
 module.exports = favoritesRoutes;

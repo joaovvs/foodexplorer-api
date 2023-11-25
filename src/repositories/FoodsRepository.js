@@ -77,7 +77,7 @@ class FoodsRepository{
             }
     }
 
-    async findFoodsByIngredients(ingredients,name){
+    async findFoodsByIngredientsOrName(ingredients,name){
         let foods;
         /* if user send any ingredient search by ingredients else return all*/
         if(ingredients){
@@ -87,6 +87,7 @@ class FoodsRepository{
                 "foods.id",
                 "foods.name",
                 "foods.category",
+                "foods.image",
                 "foods.description",
                 "foods.price",
                 "foods.user_id"
