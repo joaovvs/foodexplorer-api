@@ -10,6 +10,7 @@ class FoodsCreateService {
         if(!name ||  !category || !description || !price ){
             throw new AppError("Preencha todos os campos para realizar o cadastro!");
         }
+        price=price.replace(/R\$\s*/g, '').replace(',', '.');
 
         const newFood = await this.foodsRepository.create({name,category,description,price,ingredients, user_id});
         return {...newFood};

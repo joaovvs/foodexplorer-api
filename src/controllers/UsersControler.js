@@ -18,6 +18,7 @@ class UsersController{
         const user_data = request.body;
         const user_id= request.user.id;
 
+
         const usersRepository = new UsersRepository();
         const usersUpdateService = new UsersUpdateService(usersRepository);  
 

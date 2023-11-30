@@ -24,7 +24,7 @@ class FoodsRepository{
     async update(food,newIngredients, removedIngredients){
         const  {id, name, category, description, image, price, user_id} = food;
         await knex("foods").update({name, category, description, image, price, "updated_at": knex.fn.now()}).where({id});
-        console.log(newIngredients)
+        //valid if there's a new ingredient to insert
         if(newIngredients?.length>0){
             newIngredients = newIngredients.map(ingredient => {
                 return {
@@ -35,7 +35,7 @@ class FoodsRepository{
             })
             await knex("ingredients").insert(newIngredients);
         }
-        console.log(removedIngredients);
+        //valid if there's a removed ingredient to delete
         if(removedIngredients?.length>0){
             removedIngredients = removedIngredients.map(ingredient => {
                 return {

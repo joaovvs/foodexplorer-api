@@ -12,6 +12,8 @@ class FoodsUpdateService {
             throw new AppError("Comida não cadastrada!");
         }
 
+        price=price.replace(/R\$\s*/g, '').replace(',', '.');
+
         /* fill attributes with received information or preserve existent value*/ 
         food.name = name ?? food.name;
         food.category = category ?? food.category;
@@ -37,11 +39,7 @@ class FoodsUpdateService {
                 if(!ingredients.some(ingredient => ingredient === foodIngredient)){
                     removedIngredients.push(foodIngredient);
                 }
-            })
-            if(newIngredients || removedIngredients){
-                console.log("lista são diferentes!");
-            }
-
+            });
 
 
         return await this.foodsRepository.update(food,newIngredients,removedIngredients);
