@@ -11,8 +11,16 @@ class FoodsUpdateService {
         if(!food){
             throw new AppError("Comida não cadastrada!");
         }
+        //remove R$ and replace "," for "."
 
-        price=price.replace(/R\$\s*/g, '').replace(',', '.');
+        
+        price=String(price).replace(/R\$\s*/g, '').replace(',', '.');
+
+
+
+
+
+
 
         /* fill attributes with received information or preserve existent value*/ 
         food.name = name ?? food.name;

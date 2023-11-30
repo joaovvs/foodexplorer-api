@@ -8,6 +8,7 @@ module.exports = {
       filename: path.resolve(__dirname,"src","database", "foodExplorer.db")
     },
     useNullAsDefault: true,
+    charset: 'utf8',
     migrations: {
       directory: path.resolve(__dirname, "src", "database","knex","migrations")
     }

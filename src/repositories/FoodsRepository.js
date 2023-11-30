@@ -3,7 +3,7 @@ const knex = require("../database/knex");
 class FoodsRepository{
 
     async create(food){
-        const [food_id] = await knex("foods").insert({name: food.name,category: food.category,description: food.description,price: food.price, user_id: food.user_id});
+        const [food_id] = await knex("foods").insert({image: food.image, name: food.name,category: food.category,description: food.description,price: food.price, user_id: food.user_id});
         const foodCreated = await knex("foods").where({id: food_id}).first();
         let ingredientsInsert= [];
         if(food.ingredients.length>0){
@@ -92,16 +92,18 @@ class FoodsRepository{
                 "foods.price",
                 "foods.user_id"
             ]).distinct()
-            .whereLike("foods.name", `%${name}%`)
-            .whereIn("ingredients.name", filterIngredients)
+            .whereRaw('lower(foods.name) LIKE ?', `%${name.toLowerCase()}%`)
+            .whereIn(knex.raw('LOWER(ingredients.name)'), filterIngredients.map(ingredient => ingredient.toLowerCase()))
             .innerJoin("ingredients", "foods.id","ingredients.food_id")
             .orderBy("foods.category","food.name");
-
+            console.log(foods);
         }else{
            foods = await knex("foods")
            .select()
-           .whereLike("foods.name", `%${name}%`)
+           .whereRaw('UPPER(foods.name) LIKE ?', `%${name.toUpperCase()}%`)
            .orderBy("foods.category","food.name");
+
+           console.log(foods);
         }
 
         const ingredientsData = await knex("ingredients").orderBy("name");
