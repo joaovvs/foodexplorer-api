@@ -3,5 +3,4 @@ node_modules
 # Ignore test-related files
 /coverage.data
 /coverage/
-tmp
 src/database/foodExplorer.db
