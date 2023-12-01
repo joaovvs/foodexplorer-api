@@ -96,14 +96,11 @@ class FoodsRepository{
             .whereIn(knex.raw('LOWER(ingredients.name)'), filterIngredients.map(ingredient => ingredient.toLowerCase()))
             .innerJoin("ingredients", "foods.id","ingredients.food_id")
             .orderBy("foods.category","food.name");
-            console.log(foods);
         }else{
            foods = await knex("foods")
            .select()
-           .whereRaw('UPPER(foods.name) LIKE ?', `%${name.toUpperCase()}%`)
+           .whereRaw('lower(foods.name) LIKE ?', `%${name.toLowerCase()}%`)
            .orderBy("foods.category","food.name");
-
-           console.log(foods);
         }
 
         const ingredientsData = await knex("ingredients").orderBy("name");
@@ -116,8 +113,6 @@ class FoodsRepository{
                 ingredients: ingredientsList
             }
         });
-
-
 
         return foodsWithTags;
     }

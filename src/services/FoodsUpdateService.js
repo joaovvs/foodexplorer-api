@@ -13,8 +13,9 @@ class FoodsUpdateService {
         }
         //remove R$ and replace "," for "."
 
-        
-        price=String(price).replace(/R\$\s*/g, '').replace(',', '.');
+        if(price){
+            price=String(price).replace(/R\$\s*/g, '').replace(',', '.');
+        }
 
 
 
@@ -36,19 +37,20 @@ class FoodsUpdateService {
         // ingredients update
         //check there's a ingredient list
             //fill newIngredients if not exist ingredient
-            ingredients.forEach(receivedIngredient => {
-                if(!food.ingredients.some(ingredient => ingredient === receivedIngredient)){
-                    newIngredients.push(receivedIngredient); 
-                }
-            })
+        if(ingredients){ 
+                ingredients.forEach(receivedIngredient => {
+                    if(!food.ingredients.some(ingredient => ingredient === receivedIngredient)){
+                        newIngredients.push(receivedIngredient); 
+                    }
+                })
 
-        //check if ingredient was removed and include on removedIngredients    
-            food.ingredients.forEach(foodIngredient => {
-                if(!ingredients.some(ingredient => ingredient === foodIngredient)){
-                    removedIngredients.push(foodIngredient);
-                }
-            });
-
+            //check if ingredient was removed and include on removedIngredients    
+                food.ingredients.forEach(foodIngredient => {
+                    if(!ingredients.some(ingredient => ingredient === foodIngredient)){
+                        removedIngredients.push(foodIngredient);
+                    }
+                });
+        }
 
         return await this.foodsRepository.update(food,newIngredients,removedIngredients);
     }    

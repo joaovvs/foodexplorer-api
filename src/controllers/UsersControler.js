@@ -11,7 +11,9 @@ class UsersController{
         const usersCreateService = new UsersCreateService(usersRepository);  
         
         const newUser = await usersCreateService.execute(user);
-        return response.json(newUser);  
+
+        delete newUser.password;
+        return response.status(201).json(newUser);  
     }
 
     async update(request, response){
