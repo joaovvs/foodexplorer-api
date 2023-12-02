@@ -12,7 +12,7 @@ const uploadConfig = require("./configs/upload");
 const app = express();
 app.use(cookieParser());
 app.use(cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173","https://food-exeplorer-9a8739.netlify.app/"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173","https://food-exeplorer-9a8739.netlify.app"],
     credentials: true
 }));
 app.use(express.json());
