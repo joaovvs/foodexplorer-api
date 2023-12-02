@@ -45,7 +45,7 @@ class FavoritesController{
 
         const result = await favoriteDeleteService.execute(user_id,food_id);
         if(result>0){
-            return response.json("Registro demovido com sucesso");
+            return response.json("Registro removido com sucesso");
         }else{
             return response.status(result.statusCode).json({"status": result.statusCode,"message":result.message});
         }
